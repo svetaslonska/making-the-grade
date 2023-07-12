@@ -2,6 +2,12 @@
 <html>
 <head>
     <title>Student Grades</title>
+    <style>
+        body {
+            background-color: lightblue;
+            text-align: center;  
+        }
+    </style>
 </head>
 <body>
     <h1>Student Grades</h1>
@@ -16,8 +22,20 @@
         var highestScore = -Infinity;
         var sumScores = 0;
 
-        for (var i = 0; i < students.length; i++) {
-            var studentData = students[i].split("|");
+        var sortedStudents = students.sort(function(a, b) {
+            var nameA = a.split("|")[0].toUpperCase();
+            var nameB = b.split("|")[0].toUpperCase();
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+            return 0;
+        });
+
+        for (var i = 0; i < sortedStudents.length; i++) {
+            var studentData = sortedStudents[i].split("|");
             var name = studentData[0];
             var score = parseInt(studentData[1]);
 
